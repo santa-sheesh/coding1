@@ -24,7 +24,7 @@ void printArt (FILE* file, int corner){
       linesToSkip = TERMINAL_LINES - lineNumber;
       break;
     default:
-      printf ("PogreE!na opcija za kut.\n");
+      printf ("Pogresna opcija za kut!\n");
       return;
     }
 
@@ -40,7 +40,7 @@ void printArt (FILE* file, int corner){
 int main (){
   FILE *file = fopen ("file.txt", "r");
   if (!file){
-      printf ("GreE!ka pri otvaranju datoteke.\n");
+      printf ("Greska pri otvaranju datoteke!\n");
       return 1;
     }
 
