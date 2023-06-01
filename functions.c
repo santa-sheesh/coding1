@@ -15,6 +15,9 @@ void printArt(FILE* file, int corner, int linesToSkip) {
 
 	fseek(file, 0, SEEK_SET);
 	
+	int linesToPrint;
+	int upperLinesToSkip;
+
 	if (corner == 2) {
 		linesToSkip = TERMINAL_LINES - lineNumber;
 	}
