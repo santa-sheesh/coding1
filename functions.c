@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "header.h"
-
+//when I press 1, the art doesn't appear immediately, have to press 'w' or 's' to appear
 #define MAX_LINE_LENGTH 100
 #define TERMINAL_LINES 40
-void printArt(FILE* file, int corner) {
+void printArt(FILE* file, int corner, int linesToSkip) {
 	char line[MAX_LINE_LENGTH];
 	int lineNumber = 0;
 
@@ -14,18 +14,9 @@ void printArt(FILE* file, int corner) {
 	}
 
 	fseek(file, 0, SEEK_SET);
-
-	int linesToSkip = 0;
-	switch (corner) {
-	case 1:
-		linesToSkip = 0;
-		break;
-	case 2:
+	
+	if (corner == 2) {
 		linesToSkip = TERMINAL_LINES - lineNumber;
-		break;
-	default:
-		printf("Pogresna opcija za kut!\n");
-		return;
 	}
 
 	int i = 0;
