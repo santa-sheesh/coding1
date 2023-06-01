@@ -1,55 +1,22 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include "header.h"
 
-#define MAX_LINE_LENGTH 100
-#define TERMINAL_LINES 25
+int main() {
+	FILE* file = fopen("file.txt", "r");
+	if (!file) {
+		perror("Greska pri otvaranju datoteke!\n");
+		return 1;
+	}
 
-void printArt (FILE* file, int corner){
-  char line[MAX_LINE_LENGTH];
-  int lineNumber = 0;
+	int corner = 0;
+	printf("Odaberite kut za ASCII art (1-Gornji, 2-Donji): ");
+	scanf("%d", &corner);
 
-  while (fgets (line, MAX_LINE_LENGTH, file) != NULL){
-      lineNumber++;
-    }
+	printArt(file, corner);
 
-  fseek (file, 0, SEEK_SET);
-
-  int linesToSkip = 0;
-  switch (corner){
-    case 1:			
-      linesToSkip = 0;
-      break;
-    case 2:			
-      linesToSkip = TERMINAL_LINES - lineNumber;
-      break;
-    default:
-      printf ("Pogresna opcija za kut!\n");
-      return;
-    }
-
-  for (int i = 0; i < linesToSkip; i++){
-      printf ("\n");
-    }
-
-  while (fgets (line, MAX_LINE_LENGTH, file) != NULL){
-      printf ("%s", line);
-    }
+	fclose(file);
+	return 0;
 }
 
-int main (){
-  FILE *file = fopen ("file.txt", "r");
-  if (!file){
-      printf ("Greska pri otvaranju datoteke!\n");
-      return 1;
-    }
-
-  int corner;
-  printf ("Odaberite kut za ASCII art (1-Gornji, 2-Donji): ");
-  scanf ("%d", &corner);
-
-  printArt (file, corner);
-
-  fclose (file);
-  return 0;
-}
