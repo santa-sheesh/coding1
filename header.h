@@ -1,2 +1,2 @@
 #pragma once
-void printArt(FILE* file, int corner);
+void printArt(FILE* file, int corner, int linesToSkip);
